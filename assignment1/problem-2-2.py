@@ -63,5 +63,7 @@ if __name__ == "__main__":
     plt.scatter(workers_list, theoretical_speedup, alpha=0.7, label="Theoretical speedup")
     plt.xlabel('Number of workers')
     plt.ylabel('Speedup')
+    plt.title('Actual and theoretical speedup when running ' + 
+              str(args.steps) + '\nMonte Carlo simulation steps')
     plt.legend()
     plt.savefig('fig.png')
