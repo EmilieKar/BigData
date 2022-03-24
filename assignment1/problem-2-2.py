@@ -3,7 +3,7 @@ import argparse # See https://docs.python.org/3/library/argparse.html
 import random
 from math import pi
 from matplotlib import pyplot as plt
-import time
+from time import perf_counter
 
 def sample_pi(n):
     """ Perform n steps of Monte Carlo simulation for estimating Pi/4.
@@ -32,8 +32,6 @@ def compute_pi(steps, workers):
     print(" Steps\tSuccess\tPi est.\tError")
     print("%6d\t%7d\t%1.5f\t%1.5f" % (n_total, s_total, pi_est, pi-pi_est))
 
-def amdahl(f,s):
-    return 1 / (1 - f + f/s)
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description='Plot speedup when increasing worker count for Monte Carlo simulation aproximating pi.')
@@ -41,23 +39,19 @@ if __name__ == "__main__":
                         default='1000000',
                         type = int,
                         help='Number of steps in the Monte Carlo simulation')
-    parser.add_argument('--proportion', '-p',
-                        default='0.979',
-                        type = float,
-                        help='Proportion of time that is parallelizable')
     args = parser.parse_args()
     workers_list = [1,2,4,8,16,32]
     execution_times = []
 
     for workers in workers_list:
-        start = time.time()
+        start = perf_counter()
         compute_pi(args.steps, workers)
-        end = time.time()
+        end = perf_counter()
         execution_times.append(end-start)
         print(f'time:{end-start} workers:{workers}')
 
     actual_speedup = [execution_times[0]/e for e in execution_times]
-    theoretical_speedup = [amdahl(args.proportion, s) for s in workers_list]
+    theoretical_speedup = workers_list
 
     plt.scatter(workers_list, actual_speedup, alpha=0.7, label="Actual speedup")
     plt.scatter(workers_list, theoretical_speedup, alpha=0.7, label="Theoretical speedup")

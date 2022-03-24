@@ -1,0 +1,6 @@
+ Steps	Success	Pi est.	Error
+100000000	78539420	3.14158	0.00002
+10209068.577949906, 10209068.58718804, 10209108.826084314,10209108.82611453 
+proportion of time spent in the serial section 0.000230
+proportion of time spent in the paralell section 0.999770
+Hello from a worker
