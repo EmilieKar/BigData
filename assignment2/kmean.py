@@ -10,73 +10,65 @@ import numpy as np
 import matplotlib.pyplot as plt
 from sklearn.datasets import make_blobs
 import time
-
 def generateData(n, c):
     logging.info(f"Generating {n} samples in {c} classes")
     X, y = make_blobs(n_samples=n, centers = c, cluster_std=1.7, shuffle=False,
                       random_state = 2122)
     return X
-
-
 def nearestCentroid(datum, centroids):
     # norm(a-b) is Euclidean distance, matrix - vector computes difference
     # for all rows of matrix
     dist = np.linalg.norm(centroids - datum, axis=1)
     return np.argmin(dist), np.min(dist)
-
-
 def kmeans(k, data, nr_iter = 100):
     N = len(data)
-
     # Choose k random data points as centroids
     centroids = data[np.random.choice(np.array(range(N)),size=k,replace=False)]
     logging.debug("Initial centroids\n", centroids)
-
     N = len(data)
-
     # The cluster index: c[i] = j indicates that i-th datum is in j-th cluster
     c = np.zeros(N, dtype=int)
-
     logging.info("Iteration\tVariation\tDelta Variation")
     total_variation = 0.0
+    total_time = 0
     for j in range(nr_iter):
         logging.debug("=== Iteration %d ===" % (j+1))
-
         # Assign data points to nearest centroid
+        
         variation = np.zeros(k)
         cluster_sizes = np.zeros(k, dtype=int)        
+        start1 = time.time()
         for i in range(N):
             cluster, dist = nearestCentroid(data[i],centroids)
             c[i] = cluster
             cluster_sizes[cluster] += 1
             variation[cluster] += dist**2
+        end1 = time.time()
         delta_variation = -total_variation
         total_variation = sum(variation) 
         delta_variation += total_variation
         logging.info("%3d\t\t%f\t%f" % (j, total_variation, delta_variation))
-
         # Recompute centroids
         centroids = np.zeros((k,2)) # This fixes the dimension to 2
+        start2 = time.time()
         for i in range(N):
             centroids[c[i]] += data[i]        
         centroids = centroids / cluster_sizes.reshape(-1,1)
-        
+        end2 = time.time()
+        total_time += end2-start2
+        total_time += end1-start1
         logging.debug(cluster_sizes)
         logging.debug(c)
         logging.debug(centroids)
-    
+    print("Parallelizeble part takes %3.2f [s]" % (total_time))
     return total_variation, c
-
-
 def computeClustering(args):
     if args.verbose:
         logging.basicConfig(format='# %(message)s',level=logging.INFO)
     if args.debug: 
         logging.basicConfig(format='# %(message)s',level=logging.DEBUG)
-
     
     X = generateData(args.samples, args.classes)
-
     start_time = time.time()
     #
     # Modify kmeans code to use args.worker parallel threads
@@ -85,8 +77,9 @@ def computeClustering(args):
     #
     end_time = time.time()
     logging.info("Clustering complete in %3.2f [s]" % (end_time - start_time))
+    print("Clustering complete in %3.2f [s]" % (end_time - start_time))
     print(f"Total variation {total_variation}")
-
+    
     if args.plot: # Assuming 2D data
         fig, axes = plt.subplots(nrows=1, ncols=1)
         axes.scatter(X[:, 0], X[:, 1], c=assignment, alpha=0.2)
@@ -94,7 +87,6 @@ def computeClustering(args):
         #plt.show()        
         fig.savefig(args.plot)
         plt.close(fig)
-
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(
         description='Compute a k-means clustering.',
@@ -131,4 +123,3 @@ if __name__ == "__main__":
                         help='Print debugging output')
     args = parser.parse_args()
     computeClustering(args)
-
