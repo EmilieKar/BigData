@@ -2,6 +2,7 @@ import multiprocessing # See https://docs.python.org/3/library/multiprocessing.h
 import argparse # See https://docs.python.org/3/library/argparse.html
 import random
 from math import pi
+import time
 
 def sample_pi(queue, ret_queue, seed):
     """ Perform n steps of Monte Carlo simulation for estimating Pi/4.
@@ -11,7 +12,7 @@ def sample_pi(queue, ret_queue, seed):
     while True:
         msg = queue.get()
         if msg == 'STOP':
-            print(f'Worker recived message {msg}')
+            #print(f'Worker recived message {msg}')
             break
         
         s = 0
@@ -25,7 +26,7 @@ def sample_pi(queue, ret_queue, seed):
     
 # Adds jobs to queue if accuracy < desired accuracy 
 # Adds "DONE" to queue if desired accuracy is reached
-def compute_pi(queue, ret_queue, step, acc):
+def compute_pi(queue, ret_queue, step, acc, nmb_workers):
     s = 0
     n = 0
     while True:
@@ -34,7 +35,7 @@ def compute_pi(queue, ret_queue, step, acc):
         pi_est = (4.0*s)/n
 
         if abs(pi_est - pi)  <= acc:
-            for _ in range(args.workers -1):
+            for _ in range(nmb_workers -1):
                 queue.put('STOP')
             
             return pi_est, n
@@ -42,23 +43,32 @@ def compute_pi(queue, ret_queue, step, acc):
             queue.put('DO')
     
 
-def run(args):
-    print('Code started.......')
+def run(args, workers = None):
     queue = multiprocessing.Queue()
     ret_queue = multiprocessing.Queue()
 
-    print('Filling queue......')
-    for _ in range(args.workers - 1):
+    if workers == None:
+        workers = args.workers
+
+    for _ in range(workers - 1):
         queue.put('DO')
 
-    print('Start workers......')
     # Start worker processes
-    for i in range(args.workers - 1):
+    for i in range(workers - 1):
         multiprocessing.Process(target=sample_pi, args=(queue, ret_queue, i + args.seed)).start()
 
-    print('Start checker......')
-    pi_est, n = compute_pi(queue, ret_queue, args.steps, args.accuracy)
-    print(f'program finished with estimation {pi_est} using {n} samples')
+    pi_est, n = compute_pi(queue, ret_queue, args.steps, args.accuracy, workers)
+    #print(f'program finished with estimation {pi_est} using {n} samples')
+    return n
+
+def time_run(args, k_list):
+    ret_list = []
+    for k in k_list:
+        start_time = time.time()
+        n = run(args, k)
+        stop_time = time.time()
+        ret_list.append((stop_time-start_time)/(n /10000))
+    return ret_list
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description='Compute Pi using Monte Carlo simulation.')
@@ -67,7 +77,7 @@ if __name__ == "__main__":
                         type = int,
                         help='Number of parallel processes')
     parser.add_argument('--accuracy', '-a',
-                        default='0.001',
+                        default='0.00001',
                         type = float,
                         help='Accuracy of estimation')
     parser.add_argument('--steps', '-s',
@@ -79,5 +89,5 @@ if __name__ == "__main__":
                         type = int,
                         help='Random seed for generator')
     args = parser.parse_args()
-    
-    run(args)
+
+    print(time_run(args, [2,3,4]))
