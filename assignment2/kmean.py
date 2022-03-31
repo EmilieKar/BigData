@@ -1,5 +1,3 @@
-#!/usr/bin/env python
-#
 # File: kmeans.py
 # Author: Alexander Schliep (alexander@schlieplab.org)
 #
@@ -52,15 +50,15 @@ def kmeans(k, data, nr_iter = 100):
         centroids = np.zeros((k,2)) # This fixes the dimension to 2
         start2 = time.time()
         for i in range(N):
-            centroids[c[i]] += data[i]        
+            centroids[c[i]] += data[i]   
+        end2 = time.time()     
         centroids = centroids / cluster_sizes.reshape(-1,1)
-        end2 = time.time()
         total_time += end2-start2
         total_time += end1-start1
         logging.debug(cluster_sizes)
         logging.debug(c)
         logging.debug(centroids)
-    print("Parallelizeble part takes %3.2f [s]" % (total_time))
+    print("Parallelizable part takes %3.2f [s]" % (total_time))
     return total_variation, c
 def computeClustering(args):
     if args.verbose:
