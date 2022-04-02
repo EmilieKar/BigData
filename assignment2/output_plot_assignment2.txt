@@ -1,0 +1,728 @@
+seed 9965347
+Timed run with accuracy 1e-05 step size 100000 and with 1 workers
+program finished:
+            Duration: 0.13021135330200195s
+            Estimation 3.1415866666666665
+            Samples 300000
+            Samples per second 2303946.5637393664
+            Worker cycles 3.0
+            Average cycles per worker 3.0
+
+Rerun
+seed 2717963
+Timed run with accuracy 1e-05 step size 100000 and with 1 workers
+program finished:
+            Duration: 0.21065807342529297s
+            Estimation 3.1416
+            Samples 500000
+            Samples per second 2373514.5388449505
+            Worker cycles 5.0
+            Average cycles per worker 5.0
+
+Rerun
+seed 5833009
+Timed run with accuracy 1e-05 step size 100000 and with 1 workers
+program finished:
+            Duration: 8.640762567520142s
+            Estimation 3.1415996208530808
+            Samples 21100000
+            Samples per second 2441914.105974052
+            Worker cycles 211.0
+            Average cycles per worker 211.0
+
+Done
+seed 6232483
+Timed run with accuracy 1e-05 step size 100000 and with 2 workers
+program finished:
+            Duration: 423.32562804222107s
+            Estimation 3.1416024005017125
+            Samples 2072900000
+            Samples per second 4896703.300451387
+            Worker cycles 20729.0
+            Average cycles per worker 10364.5
+
+Done
+seed 2719590
+Timed run with accuracy 1e-05 step size 100000 and with 4 workers
+program finished:
+            Duration: 0.7083859443664551s
+            Estimation 3.1415976
+            Samples 5000000
+            Samples per second 7058299.278469944
+            Worker cycles 50.0
+            Average cycles per worker 12.5
+
+Rerun
+seed 7829415
+Timed run with accuracy 1e-05 step size 100000 and with 4 workers
+program finished:
+            Duration: 111.73890209197998s
+            Estimation 3.141602490911223
+            Samples 852700000
+            Samples per second 7631182.909763011
+            Worker cycles 8527.0
+            Average cycles per worker 2131.75
+
+Done
+seed 8938445
+Timed run with accuracy 1e-05 step size 100000 and with 6 workers
+program finished:
+            Duration: 0.48021817207336426s
+            Estimation 3.1415952941176473
+            Samples 5100000
+            Samples per second 10620172.864305642
+            Worker cycles 51.0
+            Average cycles per worker 8.5
+
+Rerun
+seed 9703106
+Timed run with accuracy 1e-05 step size 100000 and with 6 workers
+program finished:
+            Duration: 6.32693338394165s
+            Estimation 3.141598300283286
+            Samples 70600000
+            Samples per second 11158644.435737131
+            Worker cycles 706.0
+            Average cycles per worker 117.66666666666667
+
+Done
+seed 6215956
+Timed run with accuracy 1e-05 step size 100000 and with 8 workers
+program finished:
+            Duration: 1.2470972537994385s
+            Estimation 3.1415881395348837
+            Samples 17200000
+            Samples per second 13792027.805047313
+            Worker cycles 172.0
+            Average cycles per worker 21.5
+
+Rerun
+seed 9738003
+Timed run with accuracy 1e-05 step size 100000 and with 8 workers
+program finished:
+            Duration: 1.1619791984558105s
+            Estimation 3.1416025
+            Samples 16000000
+            Samples per second 13769609.663635017
+            Worker cycles 160.0
+            Average cycles per worker 20.0
+
+Rerun
+seed 2964670
+Timed run with accuracy 1e-05 step size 100000 and with 8 workers
+program finished:
+            Duration: 0.33629941940307617s
+            Estimation 3.141597142857143
+            Samples 4200000
+            Samples per second 12488870.802854506
+            Worker cycles 42.0
+            Average cycles per worker 5.25
+
+Rerun
+seed 2783795
+Timed run with accuracy 1e-05 step size 100000 and with 8 workers
+program finished:
+            Duration: 3.611625909805298s
+            Estimation 3.141584240150094
+            Samples 53300000
+            Samples per second 14757896.119665781
+            Worker cycles 533.0
+            Average cycles per worker 66.625
+
+Rerun
+seed 7900738
+Timed run with accuracy 1e-05 step size 100000 and with 8 workers
+program finished:
+            Duration: 0.41167378425598145s
+            Estimation 3.141588679245283
+            Samples 5300000
+            Samples per second 12874271.334956868
+            Worker cycles 53.0
+            Average cycles per worker 6.625
+
+Rerun
+seed 4124312
+Timed run with accuracy 1e-05 step size 100000 and with 8 workers
+program finished:
+            Duration: 0.29137563705444336s
+            Estimation 3.141585142857143
+            Samples 3500000
+            Samples per second 12011985.749330262
+            Worker cycles 35.0
+            Average cycles per worker 4.375
+
+Rerun
+seed 1438078
+Timed run with accuracy 1e-05 step size 100000 and with 8 workers
+program finished:
+            Duration: 0.23081469535827637s
+            Estimation 3.1416
+            Samples 2600000
+            Samples per second 11264447.421617651
+            Worker cycles 26.0
+            Average cycles per worker 3.25
+
+Rerun
+seed 5364832
+Timed run with accuracy 1e-05 step size 100000 and with 8 workers
+program finished:
+            Duration: 19.206979990005493s
+            Estimation 3.141584983957219
+            Samples 280500000
+            Samples per second 14604065.821173366
+            Worker cycles 2805.0
+            Average cycles per worker 350.625
+
+Done
+seed 7791571
+Timed run with accuracy 1e-05 step size 100000 and with 12 workers
+program finished:
+            Duration: 1.128432273864746s
+            Estimation 3.1415961233480174
+            Samples 22700000
+            Samples per second 20116404.436267324
+            Worker cycles 227.0
+            Average cycles per worker 18.916666666666668
+
+Rerun
+seed 8104118
+Timed run with accuracy 1e-05 step size 100000 and with 12 workers
+program finished:
+            Duration: 0.6374170780181885s
+            Estimation 3.1415842735042734
+            Samples 11700000
+            Samples per second 18355328.721936353
+            Worker cycles 117.0
+            Average cycles per worker 9.75
+
+Rerun
+seed 3077457
+Timed run with accuracy 1e-05 step size 100000 and with 12 workers
+program finished:
+            Duration: 1.5661802291870117s
+            Estimation 3.141599633027523
+            Samples 32700000
+            Samples per second 20878823.1332573
+            Worker cycles 327.0
+            Average cycles per worker 27.25
+
+Rerun
+seed 6793506
+Timed run with accuracy 1e-05 step size 100000 and with 12 workers
+program finished:
+            Duration: 0.8865442276000977s
+            Estimation 3.1415870520231213
+            Samples 17300000
+            Samples per second 19513972.863859966
+            Worker cycles 173.0
+            Average cycles per worker 14.416666666666666
+
+Rerun
+seed 1309765
+Timed run with accuracy 1e-05 step size 100000 and with 12 workers
+program finished:
+            Duration: 0.2640354633331299s
+            Estimation 3.1415854545454547
+            Samples 4400000
+            Samples per second 16664428.120583866
+            Worker cycles 44.0
+            Average cycles per worker 3.6666666666666665
+
+Rerun
+seed 4091758
+Timed run with accuracy 1e-05 step size 100000 and with 12 workers
+program finished:
+            Duration: 0.4445836544036865s
+            Estimation 3.1416004938271604
+            Samples 8100000
+            Samples per second 18219293.309072305
+            Worker cycles 81.0
+            Average cycles per worker 6.75
+
+Rerun
+seed 4967453
+Timed run with accuracy 1e-05 step size 100000 and with 12 workers
+program finished:
+            Duration: 0.4002711772918701s
+            Estimation 3.1415849275362318
+            Samples 6900000
+            Samples per second 17238313.402138
+            Worker cycles 69.0
+            Average cycles per worker 5.75
+
+Rerun
+seed 2532060
+Timed run with accuracy 1e-05 step size 100000 and with 12 workers
+program finished:
+            Duration: 0.5000901222229004s
+            Estimation 3.1416
+            Samples 9700000
+            Samples per second 19396503.887906253
+            Worker cycles 97.0
+            Average cycles per worker 8.083333333333334
+
+Rerun
+seed 3625659
+Timed run with accuracy 1e-05 step size 100000 and with 12 workers
+program finished:
+            Duration: 0.2700786590576172s
+            Estimation 3.141586956521739
+            Samples 4600000
+            Samples per second 17032075.085276026
+            Worker cycles 46.0
+            Average cycles per worker 3.8333333333333335
+
+Rerun
+seed 248673
+Timed run with accuracy 1e-05 step size 100000 and with 12 workers
+program finished:
+            Duration: 1.2764067649841309s
+            Estimation 3.141596769230769
+            Samples 26000000
+            Samples per second 20369682.074133515
+            Worker cycles 260.0
+            Average cycles per worker 21.666666666666668
+
+Rerun
+seed 182804
+Timed run with accuracy 1e-05 step size 100000 and with 12 workers
+program finished:
+            Duration: 0.06682991981506348s
+            Estimation 3.1416
+            Samples 200000
+            Samples per second 2992671.5541998893
+            Worker cycles 2.0
+            Average cycles per worker 0.16666666666666666
+
+Rerun
+seed 5528822
+Timed run with accuracy 1e-05 step size 100000 and with 12 workers
+program finished:
+            Duration: 0.5287349224090576s
+            Estimation 3.1415984466019418
+            Samples 10300000
+            Samples per second 19480460.93318453
+            Worker cycles 103.0
+            Average cycles per worker 8.583333333333334
+
+Rerun
+seed 8838748
+Timed run with accuracy 1e-05 step size 100000 and with 12 workers
+program finished:
+            Duration: 0.9635872840881348s
+            Estimation 3.1415864788732395
+            Samples 21300000
+            Samples per second 22104899.422948167
+            Worker cycles 213.0
+            Average cycles per worker 17.75
+
+Rerun
+seed 6570565
+Timed run with accuracy 1e-05 step size 100000 and with 12 workers
+program finished:
+            Duration: 0.2018141746520996s
+            Estimation 3.141595
+            Samples 2400000
+            Samples per second 11892128.0139875
+            Worker cycles 24.0
+            Average cycles per worker 2.0
+
+Rerun
+seed 5050879
+Timed run with accuracy 1e-05 step size 100000 and with 12 workers
+program finished:
+            Duration: 5.570991039276123s
+            Estimation 3.1416011092436973
+            Samples 119000000
+            Samples per second 21360651.84112421
+            Worker cycles 1190.0
+            Average cycles per worker 99.16666666666667
+
+Done
+seed 2929400
+Timed run with accuracy 1e-05 step size 100000 and with 16 workers
+program finished:
+            Duration: 0.28736257553100586s
+            Estimation 3.1415892063492064
+            Samples 6300000
+            Samples per second 21923522.881706085
+            Worker cycles 63.0
+            Average cycles per worker 3.9375
+
+Rerun
+seed 3583509
+Timed run with accuracy 1e-05 step size 100000 and with 16 workers
+program finished:
+            Duration: 18.039597511291504s
+            Estimation 3.141602382445141
+            Samples 510400000
+            Samples per second 28293314.176246222
+            Worker cycles 5104.0
+            Average cycles per worker 319.0
+
+Done
+seed 8834003
+Timed run with accuracy 1e-05 step size 100000 and with 24 workers
+program finished:
+            Duration: 0.12072515487670898s
+            Estimation 3.141592380952381
+            Samples 2100000
+            Samples per second 17394883.4618985
+            Worker cycles 21.0
+            Average cycles per worker 0.875
+
+Rerun
+seed 9420932
+Timed run with accuracy 1e-05 step size 100000 and with 24 workers
+program finished:
+            Duration: 0.167527437210083s
+            Estimation 3.141584705882353
+            Samples 3400000
+            Samples per second 20295183.025669564
+            Worker cycles 34.0
+            Average cycles per worker 1.4166666666666667
+
+Rerun
+seed 4200195
+Timed run with accuracy 1e-05 step size 100000 and with 24 workers
+program finished:
+            Duration: 0.22952628135681152s
+            Estimation 3.1415989743589745
+            Samples 3900000
+            Samples per second 16991518.2564093
+            Worker cycles 39.0
+            Average cycles per worker 1.625
+
+Rerun
+seed 1089893
+Timed run with accuracy 1e-05 step size 100000 and with 24 workers
+program finished:
+            Duration: 4.846975803375244s
+            Estimation 3.1416012685421997
+            Samples 195500000
+            Samples per second 40334428.70993114
+            Worker cycles 1955.0
+            Average cycles per worker 81.45833333333333
+
+Rerun
+seed 6796957
+Timed run with accuracy 1e-05 step size 100000 and with 24 workers
+program finished:
+            Duration: 70.34472584724426s
+            Estimation 3.1415827192043375
+            Samples 2895700000
+            Samples per second 41164422.28075637
+            Worker cycles 28957.0
+            Average cycles per worker 1206.5416666666667
+
+Done
+seed 1607020
+Timed run with accuracy 1e-05 step size 100000 and with 32 workers
+program finished:
+            Duration: 0.2502102851867676s
+            Estimation 3.141587397260274
+            Samples 7300000
+            Samples per second 29175459.332341075
+            Worker cycles 73.0
+            Average cycles per worker 2.28125
+
+Rerun
+seed 6795643
+Timed run with accuracy 1e-05 step size 100000 and with 32 workers
+program finished:
+            Duration: 0.16139721870422363s
+            Estimation 3.141585
+            Samples 2400000
+            Samples per second 14870144.722866863
+            Worker cycles 24.0
+            Average cycles per worker 0.75
+
+Rerun
+seed 7993891
+Timed run with accuracy 1e-05 step size 100000 and with 32 workers
+program finished:
+            Duration: 0.2075061798095703s
+            Estimation 3.1415935135135133
+            Samples 3700000
+            Samples per second 17830794.260660153
+            Worker cycles 37.0
+            Average cycles per worker 1.15625
+
+Rerun
+seed 7041285
+Timed run with accuracy 1e-05 step size 100000 and with 32 workers
+program finished:
+            Duration: 0.09751200675964355s
+            Estimation 3.141595
+            Samples 800000
+            Samples per second 8204117.898751819
+            Worker cycles 8.0
+            Average cycles per worker 0.25
+
+Rerun
+seed 5042856
+Timed run with accuracy 1e-05 step size 100000 and with 32 workers
+program finished:
+            Duration: 0.3206005096435547s
+            Estimation 3.1415909677419354
+            Samples 12400000
+            Samples per second 38677418.241743855
+            Worker cycles 124.0
+            Average cycles per worker 3.875
+
+Rerun
+seed 7936965
+Timed run with accuracy 1e-05 step size 100000 and with 32 workers
+program finished:
+            Duration: 0.24273943901062012s
+            Estimation 3.141593725490196
+            Samples 5100000
+            Samples per second 21010182.85609892
+            Worker cycles 51.0
+            Average cycles per worker 1.59375
+
+Rerun
+seed 375098
+Timed run with accuracy 1e-05 step size 100000 and with 32 workers
+program finished:
+            Duration: 4.022445440292358s
+            Estimation 3.141585908858167
+            Samples 195300000
+            Samples per second 48552554.1362732
+            Worker cycles 1953.0
+            Average cycles per worker 61.03125
+
+Rerun
+seed 4672764
+Timed run with accuracy 1e-05 step size 100000 and with 32 workers
+program finished:
+            Duration: 1.0160448551177979s
+            Estimation 3.141585135135135
+            Samples 44400000
+            Samples per second 43698858.15213578
+            Worker cycles 444.0
+            Average cycles per worker 13.875
+
+Rerun
+seed 3750066
+Timed run with accuracy 1e-05 step size 100000 and with 32 workers
+program finished:
+            Duration: 0.20387697219848633s
+            Estimation 3.1416025
+            Samples 4800000
+            Samples per second 23543610.385418687
+            Worker cycles 48.0
+            Average cycles per worker 1.5
+
+Rerun
+seed 8903714
+Timed run with accuracy 1e-05 step size 100000 and with 32 workers
+program finished:
+            Duration: 0.16977334022521973s
+            Estimation 3.1415906976744186
+            Samples 4300000
+            Samples per second 25327887.136435322
+            Worker cycles 43.0
+            Average cycles per worker 1.34375
+
+Rerun
+seed 7919114
+Timed run with accuracy 1e-05 step size 100000 and with 32 workers
+program finished:
+            Duration: 0.4853823184967041s
+            Estimation 3.141592688172043
+            Samples 18600000
+            Samples per second 38320308.11836484
+            Worker cycles 186.0
+            Average cycles per worker 5.8125
+
+Rerun
+seed 7200709
+Timed run with accuracy 1e-05 step size 100000 and with 32 workers
+program finished:
+            Duration: 0.1205904483795166s
+            Estimation 3.141592
+            Samples 1000000
+            Samples per second 8292530.738859573
+            Worker cycles 10.0
+            Average cycles per worker 0.3125
+
+Rerun
+seed 1660415
+Timed run with accuracy 1e-05 step size 100000 and with 32 workers
+program finished:
+            Duration: 3.9816339015960693s
+            Estimation 3.1416021532091096
+            Samples 193200000
+            Samples per second 48522793.600525215
+            Worker cycles 1932.0
+            Average cycles per worker 60.375
+
+Rerun
+seed 6839557
+Timed run with accuracy 1e-05 step size 100000 and with 32 workers
+program finished:
+            Duration: 0.3205149173736572s
+            Estimation 3.141584864864865
+            Samples 11100000
+            Samples per second 34631773.431810625
+            Worker cycles 111.0
+            Average cycles per worker 3.46875
+
+Rerun
+seed 8623473
+Timed run with accuracy 1e-05 step size 100000 and with 32 workers
+program finished:
+            Duration: 1.158036470413208s
+            Estimation 3.141585129224652
+            Samples 50300000
+            Samples per second 43435592.302245945
+            Worker cycles 503.0
+            Average cycles per worker 15.71875
+
+Rerun
+seed 6653847
+Timed run with accuracy 1e-05 step size 100000 and with 32 workers
+program finished:
+            Duration: 0.5789980888366699s
+            Estimation 3.1415885
+            Samples 24000000
+            Samples per second 41450914.02325886
+            Worker cycles 240.0
+            Average cycles per worker 7.5
+
+Rerun
+seed 7014058
+Timed run with accuracy 1e-05 step size 100000 and with 32 workers
+program finished:
+            Duration: 0.1723644733428955s
+            Estimation 3.1415942857142856
+            Samples 4200000
+            Samples per second 24366970.28421092
+            Worker cycles 42.0
+            Average cycles per worker 1.3125
+
+Rerun
+seed 5704958
+Timed run with accuracy 1e-05 step size 100000 and with 32 workers
+program finished:
+            Duration: 0.2997093200683594s
+            Estimation 3.1415866666666665
+            Samples 9300000
+            Samples per second 31030066.058268737
+            Worker cycles 93.0
+            Average cycles per worker 2.90625
+
+Rerun
+seed 9133368
+Timed run with accuracy 1e-05 step size 100000 and with 32 workers
+program finished:
+            Duration: 0.24268603324890137s
+            Estimation 3.141602424242424
+            Samples 6600000
+            Samples per second 27195631.78665074
+            Worker cycles 66.0
+            Average cycles per worker 2.0625
+
+Rerun
+seed 1690450
+Timed run with accuracy 1e-05 step size 100000 and with 32 workers
+program finished:
+            Duration: 0.08673548698425293s
+            Estimation 3.1415828571428572
+            Samples 700000
+            Samples per second 8070514.438076389
+            Worker cycles 7.0
+            Average cycles per worker 0.21875
+
+Rerun
+seed 9677349
+Timed run with accuracy 1e-05 step size 100000 and with 32 workers
+program finished:
+            Duration: 0.2290019989013672s
+            Estimation 3.1415830508474576
+            Samples 5900000
+            Samples per second 25763967.25052681
+            Worker cycles 59.0
+            Average cycles per worker 1.84375
+
+Rerun
+seed 6075866
+Timed run with accuracy 1e-05 step size 100000 and with 32 workers
+program finished:
+            Duration: 0.16872334480285645s
+            Estimation 3.141587878787879
+            Samples 3300000
+            Samples per second 19558644.975038048
+            Worker cycles 33.0
+            Average cycles per worker 1.03125
+
+Rerun
+seed 4358551
+Timed run with accuracy 1e-05 step size 100000 and with 32 workers
+program finished:
+            Duration: 0.14273858070373535s
+            Estimation 3.141593548387097
+            Samples 3100000
+            Samples per second 21718024.55030909
+            Worker cycles 31.0
+            Average cycles per worker 0.96875
+
+Rerun
+seed 671955
+Timed run with accuracy 1e-05 step size 100000 and with 32 workers
+program finished:
+            Duration: 1.4112677574157715s
+            Estimation 3.1415888050314464
+            Samples 63600000
+            Samples per second 45065863.416635044
+            Worker cycles 636.0
+            Average cycles per worker 19.875
+
+Rerun
+seed 5897789
+Timed run with accuracy 1e-05 step size 100000 and with 32 workers
+program finished:
+            Duration: 0.17571353912353516s
+            Estimation 3.14159
+            Samples 4000000
+            Samples per second 22764324.365396827
+            Worker cycles 40.0
+            Average cycles per worker 1.25
+
+Rerun
+seed 2714248
+Timed run with accuracy 1e-05 step size 100000 and with 32 workers
+program finished:
+            Duration: 0.14003825187683105s
+            Estimation 3.141586
+            Samples 2000000
+            Samples per second 14281812.099161847
+            Worker cycles 20.0
+            Average cycles per worker 0.625
+
+Rerun
+seed 612147
+Timed run with accuracy 1e-05 step size 100000 and with 32 workers
+program finished:
+            Duration: 0.1937110424041748s
+            Estimation 3.1415832
+            Samples 5000000
+            Samples per second 25811641.59742419
+            Worker cycles 50.0
+            Average cycles per worker 1.5625
+
+Rerun
+seed 2146417
+Timed run with accuracy 1e-05 step size 100000 and with 32 workers
+program finished:
+            Duration: 74.33626103401184s
+            Estimation 3.141582695082147
+            Samples 3645900000
+            Samples per second 49046050.32975567
+            Worker cycles 36459.0
+            Average cycles per worker 1139.34375
+
+Done
+workers [1, 2, 4, 6, 8, 12, 16, 24, 32]
+actual speedup [1.0, 2.005272539468847, 3.12508244704169, 4.569630196425797, 5.980581292947636, 8.747503357659538, 11.586531281762811, 16.85744071834842, 20.085084159908135]
