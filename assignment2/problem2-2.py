@@ -122,6 +122,7 @@ if __name__ == "__main__":
                         help='Reruns the program until the calculation takes this long')
     args = parser.parse_args()
 
+    # Plots a speedup graph
     if args.plot:
         worker_list = [1, 2, 4, 6, 8, 12, 16, 24, 32]
         actual_speedup = []
@@ -131,6 +132,8 @@ if __name__ == "__main__":
             args.workers = worker
             n = 0
             duration = 0
+            
+            #Reruns the computation until it takes at least ags.speed seconds to complete
             while True:
                 args.seed = random.randint(0, 10000000)
                 print(f'seed {args.seed}')
@@ -148,6 +151,7 @@ if __name__ == "__main__":
 
         theoretical_speedup = worker_list
 
+        #Construct and save the plot
         plt.scatter(worker_list, actual_speedup, alpha=0.7, label="Actual speedup")
         plt.scatter(worker_list, theoretical_speedup, alpha=0.7, label="Theoretical speedup")
         plt.xlabel('Number of workers')
@@ -161,6 +165,7 @@ if __name__ == "__main__":
     elif args.min_time != 0:
         n = 0
         duration = 0
+        #Reruns the computation until it takes at least ags.speed seconds to complete
         while True:
             args.seed = random.randint(0, 10000000)
             print(f'seed {args.seed}')
