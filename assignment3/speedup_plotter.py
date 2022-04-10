@@ -5,7 +5,7 @@ import argparse
 from matplotlib import pyplot as plt
 
 #Example usage of this script:
-#python speedup_plotter.py --command 'problem1.py -s 50000 -i 100' --cluster 'cpu-markov'  --w_argument='-w' --w_list '1 2 4 8 12 16 24 32' --time 'Total time:' --slurm_cores +1 --figure 'fig.png' --title 'K-means speedup from 50000 \nand samples 100 iterations'
+#python speedup_plotter.py --command 'problem1.py -s 50000 -i 100' --cluster 'cpu-markov'  --w_argument='-w' --w_list '1 2 4 8 12 16 24 32' --time 'Total time:' --slurm_cores +1 --figure 'fig.png' --title 'K-means speedup from 50000 and samples 100 iterations'
 #This produces a figure called fig.png that plots the speedups for the python file problem1.py ran with fixed parameters:
 #-s 50000 and -i 100 and with different worker parameters -w of 1, 2, 4, 8, 12, 16, 24, 32
 #The measured time is fount in the output file on the line starting with 'Total time:'

@@ -123,6 +123,7 @@ def computeClustering(args):
     end_time = time.time()
     logging.info("Clustering complete in %3.2f [s]" % (end_time - start_time))
     print(f"Total variation {total_variation}")
+    print(f"Total time: {end_time - start_time}")
 
     if args.plot: # Assuming 2D data
         fig, axes = plt.subplots(nrows=1, ncols=1)
