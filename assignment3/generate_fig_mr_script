@@ -1,0 +1,2 @@
+#!/bin/bash
+python speedup_plotter.py --command 'run_problem2a.py /data/2022-DIT065-DAT470/data-assignment-3-1M.dat -r local' --cluster 'cpu-shannon'  --w_argument='' --w_list '1 2 4 8 12 16 24 32' --time 'Total time:' --figure 'fig_mr.png' --title 'Map-Reduce speedup on 1M' --slurm_cores 0 --no_error_check
