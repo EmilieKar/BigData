@@ -1,8 +1,14 @@
 import subprocess
 import os
+import sys
 import time
 import argparse
 from matplotlib import pyplot as plt
+
+def cancel_jobs(job_list):
+    for job in job_list:
+        cmd = 'scancel ' + str(job)
+        ans = subprocess.check_output(cmd.split()).decode("utf-8")
 
 #Example usage of this script:
 #python speedup_plotter.py --command 'problem1.py -s 50000 -i 100' --cluster 'cpu-markov'  --w_argument='-w' --w_list '1 2 4 8 12 16 24 32' --time 'Total time:' --slurm_cores +1 --figure 'fig.png' --title 'K-means speedup from 50000 and samples 100 iterations'
@@ -26,7 +32,7 @@ if __name__ == "__main__":
     parser.add_argument('--slurm_cores',
                         default=1,
                         type=int,
-                        help='Set the slurm cores relative to worker')
+                        help='Set the slurm cores relative to the number of workers specified in --w_list')
     parser.add_argument('--time',
                         required=True,
                         help='Set identifier for the running time of the command in the output, the time should follow this identification and have unit second.')
@@ -35,6 +41,13 @@ if __name__ == "__main__":
     parser.add_argument('--figure', '-f',
                         default='fig.png',
                         help='Set the file name of the figure')
+    parser.add_argument('--no_error_check',
+                        action='store_true',
+                        help='Disables the check of error file')
+
+    parser.add_argument('--debug', '-d',
+                        action='store_true',
+                        help='Only prints the command that is supposed to be run, used for debugging')
 
     args = parser.parse_args()
 
@@ -57,16 +70,27 @@ if __name__ == "__main__":
     for workers in worker_list:
 
         #constructing the bash command
-        cmd = slurm_cmd + slurm_cpus + str(workers + int(args.slurm_cores)) + slurm_cluster + args.cluster + slurm_script + user_cmd[0] + ' -- ' + " ".join(user_cmd[1:]) + " " + args.w_argument + " " + str(workers)
+        cmd = slurm_cmd + slurm_cpus + str(workers + int(args.slurm_cores)) + slurm_cluster + args.cluster + slurm_script + user_cmd[0] + ' -- ' + " ".join(user_cmd[1:]) + " "
+
+        #enable running scripts without worker parameter
+        if args.w_argument:
+            cmx += args.w_argument + " " + str(workers)
 
         print(cmd)
-        #running the command, i.e scheduling with slurm
-        submission_str = subprocess.check_output(cmd.split()).decode("utf-8")
-        print(submission_str)
-        job_id = int(submission_str.split()[-1])
-        job_ids_not_done.append(job_id)
-        job_worker_dict[job_id] = workers
 
+
+        #running the command, i.e scheduling with slurm
+        if not args.debug:
+            submission_str = subprocess.check_output(cmd.split()).decode("utf-8")
+            print(submission_str)
+            job_id = int(submission_str.split()[-1])
+            job_ids_not_done.append(job_id)
+            job_worker_dict[job_id] = workers
+
+
+    #if we are debugging then return here
+    if args.debug:
+        sys.exit()
 
     #waiting for processes to be vissible in squeue
     time.sleep(1)
@@ -74,15 +98,18 @@ if __name__ == "__main__":
     while len(job_ids_not_done) != 0:
         print(job_ids_not_done)
         for job in job_ids_not_done:
-            #error_file_name = "./slurm-" + str(job) + ".error"
-            ##check if files exist, otherwise skip
-            #if os.path.exists(error_file_name):
-            #    error_file = open(error_file_name)
+            if not args.no_error_check:
+                error_file_name = "./slurm-" + str(job) + ".error"
+                #check if files exist, otherwise skip
+                if os.path.exists(error_file_name):
+                    error_file = open(error_file_name)
 
-            #    error_lines = error_file.readlines()
-            #    #if there are error messages raise exception
-            #    if len(error_lines) != 0:
-            #        raise Exception('job ' + str(job) + ' has error:\n' + str(error_lines))
+                    error_lines = error_file.readlines()
+                    #if there are error messages raise exception
+                    if len(error_lines) != 0:
+                        #cancel all jobs
+                        cancel_jobs(job_ids_not_done)
+                        raise Exception('job ' + str(job) + ' has error:\n' + ''.join(error_lines))
 
             #check squeue
             squeue_rows = subprocess.check_output(squeue_cmd.split()).decode("utf-8")
