@@ -75,10 +75,7 @@ def kmeans(args, data):
         mapResult = pool.starmap(calculateClusters, parameterList)
         
         #decoding the results
-        c_results = [c for c, _, _, _ in mapResult]
-        cluster_sizes_reults = np.array([c_s for _, c_s, _, _ in mapResult])
-        variation_results = np.array([var for _, _, var, _ in mapResult])
-        centroids_data_sum_result = np.array([c_sum for _, _, _, c_sum in mapResult])
+        [c_results, cluster_sizes_reults, variation_results, centroids_data_sum_result] = list(zip(*mapResult))
 
         #transforming the results
         c = np.concatenate(c_results)
