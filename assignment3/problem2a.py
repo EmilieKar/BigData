@@ -11,52 +11,12 @@ from operator import add
 #their minimal and maximal value,
 #as well as the counts necessary for producing a histogram; i.e. for how many records does the value fall into a specific bin.
 class ValueStats(MRJob):
-    """
-    def configure_args(self):
-        super(ValueStats, self).configure_args()
-        self.add_passthru_arg(
-            '--bins', type=int, default=10, help='Bins for the bucketization')
-    """
-
-    """
-    def __init__(self, args):
-        print(args)
-        buckets = 10
-
-        if '-b' in args:
-            ind = args.index('-b')
-            buckets = int(args[ind + 1])
-            args = args[:ind] + args[ind + 2:]
-
-        self.buckets = buckets
-        print(args)
-
-        super().__init__(None)
-    """
-
-    """
-    def mapper_init(self):
-        self.values = defaultdict(int)
-
-    def mapper(self, _, line):
-        value = float(line.split()[2])
-        self.values[value] += 1
-
-    def mapper_final(self):
-        values_sum = sum(v*n for (v,n) in self.values.items())
-        values_terms = sum(self.values.values())
-        print(values_sum, values_terms)
-        yield ('sum_terms', (values_sum, values_terms))
-        yield ('max', max(self.values.keys()))
-        yield ('min', min(self.values.keys()))
-    """
     def mapper_s1(self, _, line):
         value = float(line.split()[2])
         yield ('s1_map_value', value)
 
     def combiner_s1(self, key, values):
         values = list(values)
-        #counter = Counter(values)
         part_sum = sum(values)
         part_sum_sq = sum(map(lambda x: x**2, values))
         sum_terms = len(values)
