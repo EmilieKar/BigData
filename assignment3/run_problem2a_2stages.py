@@ -1,5 +1,5 @@
-from alt_prob2_filip_1 import ValueStats_s1
-from alt_prob2_filip_2 import ValueStats_s2
+from problem2a_stage1 import ValueStats_s1
+from problem2a_stage2 import ValueStats_s2
 import sys
 import time
 

@@ -15,6 +15,8 @@ def binner(value, min_limit, max_limit, bins):
 
     return bins_list
 
+#Calculates the histogram for the input data given the,
+#min, max, mean and standard deviation as parameters
 class ValueStats_s2(MRJob):
     def configure_args(self):
         super(ValueStats_s2, self).configure_args()

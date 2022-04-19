@@ -3,9 +3,7 @@ import numpy as np
 import math
 import statistics
 
-#mean and standard deviation of the values,
-#their minimal and maximal value,
-#as well as the counts necessary for producing a histogram; i.e. for how many records does the value fall into a specific bin.
+#Calculates the min, max, mean and standard deviation of the values
 class ValueStats_s1(MRJob):
     def mapper(self, _, line):
         value = float(line.split()[2])
