@@ -1,2 +1,2 @@
 #!/bin/bash
-python speedup_plotter.py --command 'run_problem2a_2stages.py /data/2022-DIT065-DAT470/data-assignment-3-100M.dat -r local' --cluster 'cpu-shannon'  --w_argument='--num-cores' --w_list '1 2 4 8 12 16 24 32' --time 'Total time:' --figure 'speedup_fig_problem2a.png' --title 'Map-Reduce speedup on 100M' --slurm_cores 0 --no_error_check
+python ../speedup_plotter.py --command 'run_problem2a_2stages.py /data/2022-DIT065-DAT470/data-assignment-3-100M.dat -r local' --cluster 'cpu-shannon'  --w_argument='--num-cores' --w_list '1 2 4 8 12 16 24 32' --time 'Total time:' --figure 'speedup_fig_problem2a.png' --title 'Map-Reduce speedup on 100M' --slurm_cores 0 --no_error_check

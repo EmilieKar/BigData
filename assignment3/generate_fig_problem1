@@ -1,2 +1,2 @@
 #!/bin/bash
-python speedup_plotter.py --command 'problem1.py -s 50000 -i 100' --cluster cpu-markov --w_argument='-w' --w_list '1 2 4 8 12 16 24 32' --time 'Total time:' --slurm_cores +1 --figure 'speedup_fig_problem1.png' --title 'K-means speedup from 50000 samples and 100 iterations' --no_error_check
+python ../speedup_plotter.py --command 'problem1.py -s 50000 -i 100' --cluster cpu-markov --w_argument='-w' --w_list '1 2 4 8 12 16 24 32' --time 'Total time:' --slurm_cores +1 --figure 'speedup_fig_problem1.png' --title 'K-means speedup from 50000 samples and 100 iterations' --no_error_check

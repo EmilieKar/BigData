@@ -140,8 +140,12 @@ if __name__ == "__main__":
                 #wait util we loop again
                 time.sleep(1)
 
-        print(job_worker_dict)
-        print(job_time_dict)
+        print(f'pid worker dict {job_worker_dict}')
+        print(f'pid time dict {job_time_dict}')
+
+        worker_time_list = sorted([(w, job_time_dict[pid]) for (pid, w) in job_worker_dict.items()], key= lambda x: x[0])
+
+        print(f'worker time list {worker_time_list}')
 
         #overwrite worker list and recreate it together with the corresponding time list
         worker_list = []
