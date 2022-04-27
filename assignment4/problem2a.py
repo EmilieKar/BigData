@@ -25,10 +25,15 @@ if __name__ == '__main__':
                         type=str,
                         required=True,
                         help='The file run the program on')
+    parser.add_argument('--built_in',
+                        action='store_true',
+                        help='Enable the built in functions for these stats also, used to compare speed and correctness')
 
     args = parser.parse_args()
 
-    sc = SparkContext(master = 'local[4]')
+    sc = SparkContext(master = 'local[' + str(args.w) + ']')
+
+    print(sc.getConf().getAll())
 
     print('Timing started')
     start = time.time()
@@ -77,9 +82,13 @@ if __name__ == '__main__':
     print(f'Calculations finished in: {end-start}')
 
     ##Used to check the answers
-    print('\nPyspark stats:')
-    data_stats = data.stats()
-    print(data_stats)
+    if args.built_in:
+        print('\nPyspark stats:')
+        data_stats = data.stats()
+        print(data_stats)
 
-    data_hist = data.histogram(10)
-    print(data_hist)
+        data_hist = data.histogram(10)
+        print(f'histogram {data_hist[1]}')
+
+        end2 = time.time()
+        print(f'Calculations for pyspark stats were: {end2-end}')
