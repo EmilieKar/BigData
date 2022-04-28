@@ -1,4 +1,3 @@
-import pandas
 import math
 import statistics
 import sys
