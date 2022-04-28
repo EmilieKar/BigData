@@ -1,2 +1,2 @@
 #!/bin/bash
-python ../speedup_plotter.py --command 'problem2a.py --file /data/2022-DIT065-DAT470/data-assignment-3-1M.dat' --cluster cpu --w_argument=-w --w_list '1 2 4 8 12 16 24 32' --time 'Calculations finished in:' --slurm_cores +0 --figure 'speedup_p2a.png' --title 'Speedup graph when calculating statistics using spark' --no_error_check 
+python ../speedup_plotter.py --command 'problem2a.py --file /data/2022-DIT065-DAT470/data-assignment-3-10M.dat' --cluster cpu --w_argument=-w --w_list '1 2 4 8 12 16 24 32' --time 'Calculations finished in:' --slurm_cores +0 --figure 'speedup_p2b.png' --title 'Speedup graph when calculating statistics using spark on 10M' --no_error_check 
