@@ -15,6 +15,27 @@ def binner(value, limits):
 
     return
 
+def mapper (line):
+    l = line.split()
+    return (int(l[1]), float(l[2]))
+
+def stats_vector(a):
+    return (1, a, a**2)
+
+def remove_key (a):
+    return a[1]
+
+def add(a, b):
+    return a + b
+
+def tuple_add(a, b):
+    return [sum(x) for x in zip(a,b)]
+
+#imput is two tuples
+#output is (min, max) tuple
+def min_max(a,b):
+    return (min(a[0],b[0]), max(a[1],b[1]))
+
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description='Calculate the statistics using spark')
     parser.add_argument('-w',
@@ -35,84 +56,57 @@ if __name__ == '__main__':
 
     print(sc.getConf().getAll())
 
+    distFile = sc.textFile(args.file)
     print('Timing started')
     start = time.time()
-    distFile = sc.textFile(args.file)
 
-    #Output: mean and standard deviation of the values, their minimal and maximal value, as well as the counts necessary for producing a histogram
+    data = distFile.map(mapper)
 
-    data = distFile.map(lambda l: float(l.split()[2]))
+    #calculate the number of rows, the sum of the values and the sum of the squares
+    (data_terms, data_sum, data_sq_sum) = data.mapValues(stats_vector).reduceByKey(tuple_add).map(remove_key).reduce(tuple_add)
 
-    data_terms = data.map(lambda a: 1).reduce(lambda a, b: a + b)
-
-    data_sum = data.reduce(lambda a, b: a + b)
-
-    data_sq = data.map(lambda x: x**2)
-    data_sq_sum = data_sq.reduce(lambda a, b: a + b)
-
-    data_min = data.reduce(lambda a, b: min(a,b))
-
-    data_max = data.reduce(lambda a, b: max(a,b))
-
+    #Calculate the mean and standard deviation
     data_mean = data_sum/data_terms
-
     std_dev = math.sqrt(data_sq_sum/data_terms - data_mean**2)
 
+    #calculate the min and max
+    (data_min, data_max) = data.mapValues(lambda a: (a,a)).reduceByKey(min_max).map(remove_key).reduce(min_max)
+
+    #Calculate the histogram
     bins = 10
     limits = np.linspace(data_min, data_max, bins+1)
-    data_hist_indexes = data.map(lambda x: binner(x, limits)).filter(lambda x: x is not None)
+    data_hist_indexes = data.map(remove_key).map(lambda x: binner(x, limits)).filter(lambda x: x is not None)
     data_hist_part = data_hist_indexes.reduceByKey(lambda a, b: a + b).collect()
     data_hist = [0]*bins
     for (i, c) in data_hist_part:
         data_hist[i] = c
 
-
-    print('The results')
-    #print(f'sum {data_sum}')
-    #print(f'sum of squares {data_sq_sum}')
-    print(f'terms {data_terms}')
-    print(f'min {data_min}')
-    print(f'max {data_max}')
-    print(f'mean {data_mean}')
-    print(f'standard deviation {std_dev}')
-
-    print(f'histogram {data_hist}')
-
-    median_num = math.ceil(data_terms/2) #sest a fixed median number (index + 1), we do not use average in case of even number of datapoints
+    #approximate the median as the center of the bin containing the median
+    median_num = math.ceil(data_terms/2) #set a fixed median number (index + 1), we do not use average in case of even number of datapoints
     bin_end = 0
     median_approx = None
     for (i, h) in enumerate(data_hist):
         bin_end += h
         if bin_end >= median_num:
-            bin_start = bin_end - h + 1
-            p = (median_num - bin_start + 1)/(bin_end - bin_start + 2)
-            median_approx = limits[i] + p * (limits[i + 1] - limits[i])
-            print(f'index found {i}') #TODO remove
-            print(f'h  {h}') #TODO remove
-            print(f'bin start {bin_start}') #TODO remove
-            print(f'bin end {bin_end}') #TODO remove
-            print(f'p {p}') #TODO remove
-            print(f'numpy median {np.linspace(limits[i], limits[i+1], h + 2)[median_num - bin_start +1]}') #TODO remove
+            #right bin found
+            median_approx = (limits[i] + limits[i + 1])/2
             break
     
+    print(f'The results\n terms {data_terms}\n mean {data_mean}\n standard deviation {std_dev}\n min {data_min}\n max {data_max}\n histogram {data_hist}')
     if median_approx is not None:
-        print(f'limits {limits}') #TODO remove
-        print(f'cumsum {np.cumsum(data_hist)}') #TODO remove
-        print(f'median number {median_num}') #TODO remove
-        print(f'approximated median {median_approx}')
-
-
+        print(f' approximated median {median_approx}')
 
     end = time.time()
     print(f'Calculations finished in: {end-start}')
 
     ##Used to check the answers
     if args.built_in:
+        datapy = data.map(remove_key)
         print('\nPyspark stats:')
-        data_stats = data.stats()
+        data_stats = datapy.stats()
         print(data_stats)
 
-        data_hist = data.histogram(10)
+        data_hist = datapy.histogram(10)
         print(f'histogram {data_hist[1]}')
 
         end2 = time.time()
