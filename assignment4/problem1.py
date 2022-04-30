@@ -3,7 +3,8 @@ from mrjob.job import MRJob
 import math
 import statistics
 
-#using map reduce to do one iteration of kmeans
+#Using map reduce to do one iteration of kmeans
+#This solution is hardcoded for datapoints with 2 dimensions
 class Kmeans_iteration_mrjob(MRJob):
     #returns index of closest centroid and the distance to that centroid
     def nearestCentroid(self, point):
