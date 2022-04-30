@@ -36,6 +36,7 @@ class Kmeans_iteration_mrjob(MRJob):
         yield (cluster, datapoint)
         yield ('variation', dist**2)
 
+    #yeild the variation and the new centers
     def reducer(self, key, values):
         if key == 'variation':
             yield('variation', sum(values))
