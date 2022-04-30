@@ -5,7 +5,7 @@ import statistics
 
 #using map reduce to do one iteration of kmeans
 class Kmeans_iteration_mrjob(MRJob):
-    #returns index of closest centroid and the distance tho that centroid
+    #returns index of closest centroid and the distance to that centroid
     def nearestCentroid(self, point):
         dist_list = []
 
@@ -21,7 +21,7 @@ class Kmeans_iteration_mrjob(MRJob):
 
     def configure_args(self):
         super(Kmeans_iteration_mrjob, self).configure_args()
-        #This parameter is passed as a list where we assume the datapoints have 2 dimentions
+        #This parameter is passed as a list where we assume the datapoints have 2 dimensions
         #That means the --center argument is passed as --center x1 y1 x2 y2 ...
         self.add_passthru_arg(
             '--centers', type=float, nargs="+", help='List of centers to use')
@@ -39,7 +39,7 @@ class Kmeans_iteration_mrjob(MRJob):
         if key == 'variation':
             yield('variation', sum(values))
         
-        #Calculate the center of the datapoints in values
+        #Calculate the center of the datapoints
         else:
             n = 0
             v_sum = [0,0]
