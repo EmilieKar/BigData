@@ -37,13 +37,14 @@ class Kmeans_iteration_mrjob(MRJob):
         yield (cluster, datapoint)
         yield ('variation', dist**2)
     
+    #Combines the centroid results localy
+    #yeilds one variation key and compressed informations about the centroids for this combiner
     def combiner(self, key, values):
         if key == 'variation':
             yield('variation', sum(values))
         
         #Calculate the center of the datapoints
         else:
-            # [sum(x), sum(y), n]
             res = [0,0,0]
 
             for v in values:
@@ -69,24 +70,7 @@ class Kmeans_iteration_mrjob(MRJob):
                 n += v[2]
 
             center = [v/n for v in v_sum]
-            yield (key, center)
+            yield (f"Centroid {key}", center)
     
-    def final_reducer(self, key, values):
-        if key == 'variation':
-            yield('variation', values)
-        
-        else: 
-            yield ('Centroids', [v for v in values])
-    
-    def steps(self):
-        return[
-            MRStep(
-                mapper = self.mapper,
-                combiners = self.combiner,
-                reducer = self.reducer),
-            MRStep(
-                reducer = self.final_reducer)
-        ]
-
 if __name__ == '__main__':
     Kmeans_iteration_mrjob.run()
