@@ -11,10 +11,6 @@ from problem1 import ave_common_prefix_len
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description='Calculate average common prefix for text using spark')
-    parser.add_argument('-w',
-                        type=int,
-                        default=4,
-                        help='Set the number of workers')
     parser.add_argument('--file',  '-f',
                         type=str,
                         required=True,
@@ -25,12 +21,18 @@ if __name__ == '__main__':
     with open(args.file) as file:
         content = file.read()
 
-    result = sorted(list(dict.fromkeys(re.sub(r"[^a-z\s]+", "", content.lower()).split())))
     print('Timing started')
     start = time.time()
     
-    #print(result)
-    print('average shared prefix:', ave_common_prefix_len(result, debug=False))
+    word_list = re.sub(r"[^a-z\s]+", "", content.lower()).split()
+    word_len = [len(w) for w in word_list]
+    words_sorted = sorted(list(dict.fromkeys(word_list)))
+    num_unique = len(words_sorted)
+
+    #print(words_sorted)
+    print('average common prefix:', ave_common_prefix_len(words_sorted, debug=False))
+    print('number of unique words:', num_unique)
+    print('average word length:', sum(word_len)/len(word_len))
 
     end = time.time()
     print(f'Calculations finished in: {end-start}')

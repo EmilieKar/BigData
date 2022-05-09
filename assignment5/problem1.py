@@ -5,12 +5,12 @@ import time
 import argparse
 import re
 
-#returns a list of key, value pairs for the input line
-#the values are the words filtered for only a-z
-#and the key is the two first characters in the value word
-#but only 1 caracter in case of a 1 character word
-def mapper (line):
-    l = list(set(re.sub(r"[^a-z\s]+", "", line.lower()).split()))
+#returns a list of key, value pairs for the input line the
+#values are the words filtered for only a-z and the key for
+#each value is the first two characters in the word
+#but only 1 character in case of a 1 character word
+def sort_mapper (line):
+    l = re.sub(r"[^a-z\s]+", "", line.lower()).split()
     return [(w[0:min(2, len(w))], w) for w in l]
 
 #these 3 functions are used to combine the values corresponding to each key into a single list
@@ -42,10 +42,10 @@ def ave_common_prefix_len(lst, debug=False):
     if lst_len < 2:
         return 0
 
-    last_word = lst.pop(0)
+    last_word = lst[0]
     common_sum = 0
 
-    for word in lst:
+    for word in lst[1:]:
         if debug:
             print(last_word, word, chars_common(last_word, word))
         common_sum += chars_common(last_word, word)
@@ -56,6 +56,8 @@ def ave_common_prefix_len(lst, debug=False):
 
     return common_sum/lst_len
 
+def tuple_add(a, b):
+    return (a[0] + b[0], a[1] + b[1])
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description='Calculate average common prefix for text using spark')
@@ -83,8 +85,8 @@ if __name__ == '__main__':
     print('Timing started')
     start = time.time()
 
-    #apply the key,value mapper using flatmap to produce a single list
-    data = dataFile.flatMap(mapper)
+    #apply the key,value mapper using flatmap
+    data = dataFile.flatMap(sort_mapper)
 
     #combine all the words of each key, and sort the unique words
     combined = data.combineByKey(to_list, append, extend).mapValues(lambda x: sorted(set(x)))
@@ -93,12 +95,21 @@ if __name__ == '__main__':
     result = sorted(combined.collect())
 
     #produce the final sorted word list
-    sorted_word = []
+    sorted_words = []
     for (key, values) in result:
-        sorted_word.extend(values)
+        sorted_words.extend(values)
 
     #calculate the average common word prefix
-    print('\naverage common prefix: ', ave_common_prefix_len(sorted_word))
+    ave_common_prefix = ave_common_prefix_len(sorted_words)
+    print('\naverage common prefix: ', ave_common_prefix)
+
+    #calculate the number of unique words
+    num_unique = len(sorted_words)
+    print('number of unique words: ', num_unique)
+
+    #Calculate the total word lenth adn number of words
+    (total_word_len, num_words) = data.mapValues(lambda x: (len(x), 1)).reduceByKey(tuple_add).map(lambda x: x[1]).reduce(tuple_add)
+    print('average word length: ', total_word_len/num_words)
 
     end = time.time()
-    print(f'Calculations finished in: {end-start}')
+    print(f'\nCalculations finished in: {end-start}')
