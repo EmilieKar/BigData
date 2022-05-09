@@ -5,9 +5,9 @@ import time
 import argparse
 import re
 
-#returns a list of key, value pairs for the input line the
-#values are the words filtered for only a-z and the key for
-#each value is the first two characters in the word
+#returns a list of key, value pairs for the input line.
+#the values are the words filtered for only a-z and the 
+#key for each value is the first two characters in the word
 #but only 1 character in case of a 1 character word
 def sort_mapper (line):
     l = re.sub(r"[^a-z\s]+", "", line.lower()).split()
@@ -54,7 +54,7 @@ def ave_common_prefix_len(lst, debug=False):
     if debug:
         print('\nlist length: ', lst_len, '\ncommon prefix sum:', common_sum)
 
-    return common_sum/lst_len
+    return common_sum/(lst_len - 1)
 
 def tuple_add(a, b):
     return (a[0] + b[0], a[1] + b[1])
@@ -107,9 +107,10 @@ if __name__ == '__main__':
     num_unique = len(sorted_words)
     print('number of unique words: ', num_unique)
 
-    #Calculate the total word lenth adn number of words
+    #Calculate the total word lenth and number of words
     (total_word_len, num_words) = data.mapValues(lambda x: (len(x), 1)).reduceByKey(tuple_add).map(lambda x: x[1]).reduce(tuple_add)
-    print('average word length: ', total_word_len/num_words)
+    ave_word_len = total_word_len/num_words
+    print('average word length: ', ave_word_len)
 
     end = time.time()
     print(f'\nCalculations finished in: {end-start}')
