@@ -79,10 +79,6 @@ if __name__ == '__main__':
 
     trie = SampleTrie()
 
-    #debug profile TODO remove
-    #profiler = pprofile.Profile()
-    #with profiler:
-
     startSetup = time.time()
     #build the datastructures
     with open(args.file, "r") as file:
@@ -108,10 +104,10 @@ if __name__ == '__main__':
     rng = numpy.random.default_rng()
     start = time.time()
     samples = rng.choice(items, args.n, replace=True, p=prob)
-    #print(samples[0])
     end = time.time()
+    print(Counter(samples))
     
-    print(f' {args.n} samples using numpy choice in {end-start}s, {args.n/(end - start)} samples per second')
+    print(f' {args.n} samples using numpy choice in {end-start}s, {args.n/(end - start)} samples per second\n')
 
     #small improve for larger n's test?
 
@@ -132,19 +128,16 @@ if __name__ == '__main__':
         
 
     end = time.time()
-    print(f' {args.n} samples using test improve in {end-start}s, {args.n/(end - start)} samples per second')
+    print(Counter(samples))
+    print(f' {args.n} samples using test improve in {end-start}s, {args.n/(end - start)} samples per second\n')
 
-    #TODO remove
-    #print(trie.root.keys)
-    #print(trie.root.weights)
-    #print(trie.root.children)
 
     #the trie code
     startTrie = time.time()
     samples_trie = trie.sample(args.n)
-    #print(samples_trie[0])
     endTrie = time.time()
-    print(f' {args.n} samples using trie in {endTrie-startTrie}s, {args.n/(endTrie - startTrie)} samples per second')
+    print(Counter(samples_trie))
+    print(f' {args.n} samples using trie in {endTrie-startTrie}s, {args.n/(endTrie - startTrie)} samples per second\n')
 
     #end profiling TODO remove
     #profiler.dump_stats("./tmp/profiler_stats.txt")
