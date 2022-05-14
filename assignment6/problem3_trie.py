@@ -1,10 +1,10 @@
 import numpy
+import numpy as np
 import time
 import argparse
 import sys
 from collections import Counter
 from tqdm import tqdm
-import pprofile
 
 class TrieNode:
     def __init__(self):
@@ -112,6 +112,24 @@ if __name__ == '__main__':
     end = time.time()
     
     print(f' {args.n} samples using numpy choice in {end-start}s, {args.n/(end - start)} samples per second')
+
+    #small improve for larger n's test?
+
+    start = time.time()
+    cumprob = 0
+    count = 0
+    sample_probs = np.random.uniform(0,1,args.n)
+    samples = []
+    np.sort(sample_probs)
+    for i in range(len(prob)):
+        if cumprob < sample_probs[count] <= cumprob+prob[i]:
+            count +=1
+            samples.append(item[i])
+        cumprob+=prob[i]
+        if count > args.n:
+            break
+    end = time.time()
+    print(f' {args.n} samples using test improve in {end-start}s, {args.n/(end - start)} samples per second')
 
     #TODO remove
     #print(trie.root.keys)
