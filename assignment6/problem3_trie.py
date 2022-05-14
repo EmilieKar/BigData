@@ -124,7 +124,7 @@ if __name__ == '__main__':
     for i in range(len(prob)):
         if cumprob < sample_probs[count] <= cumprob+prob[i]:
             count +=1
-            samples.append(item[i])
+            samples.append(items[i])
         cumprob+=prob[i]
         if count > args.n:
             break
