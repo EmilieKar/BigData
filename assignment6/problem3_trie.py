@@ -114,17 +114,22 @@ if __name__ == '__main__':
     start = time.time()
     cumprob = 0
     count = 0
-    sample_probs = np.random.uniform(0,1,args.n)
+    sample_probs = np.sort(np.random.uniform(0,1,args.n))
     samples = []
-    np.sort(sample_probs)
     i = 0
-    while i < len(prob):
-        if cumprob < sample_probs[count] <= cumprob+prob[i]:
-            count +=1
-            samples.append(items[i])
-        else:
+    for s in sample_probs:
+        while s > cumprob+prob[i]:
             cumprob+=prob[i]
             i += 1
+        samples.append(items[i])
+
+    #while i < len(prob):
+    #    if cumprob < sample_probs[count] <= cumprob+prob[i]:
+    #        count +=1
+    #        samples.append(items[i])
+    #    else:
+    #        cumprob+=prob[i]
+    #        i += 1
         
 
     end = time.time()
