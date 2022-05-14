@@ -121,13 +121,16 @@ if __name__ == '__main__':
     sample_probs = np.random.uniform(0,1,args.n)
     samples = []
     np.sort(sample_probs)
-    for i in range(len(prob)):
+    i = 0
+    while i < len(prob):
         if cumprob < sample_probs[count] <= cumprob+prob[i]:
             count +=1
             samples.append(items[i])
-        cumprob+=prob[i]
-        if count > args.n:
-            break
+        else:
+            cumprob+=prob[i]
+            i += 1
+        
+
     end = time.time()
     print(f' {args.n} samples using test improve in {end-start}s, {args.n/(end - start)} samples per second')
 
