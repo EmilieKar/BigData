@@ -1,9 +1,6 @@
-import numpy
 import numpy as np
 import time
 import argparse
-import sys
-from collections import Counter
 from tqdm import tqdm
 
 class TrieNode:
@@ -73,7 +70,6 @@ if __name__ == '__main__':
 
     args = parser.parse_args()
 
-
     items = []
     prob = []
 
@@ -101,16 +97,15 @@ if __name__ == '__main__':
     print(f'startup took {endSetup-startSetup}s')
 
     #the reference code
-    rng = numpy.random.default_rng()
+    rng = np.random.default_rng()
     start = time.time()
     samples = rng.choice(items, args.n, replace=True, p=prob)
     end = time.time()
-    print(Counter(samples))
-    
+
     print(f' {args.n} samples using numpy choice in {end-start}s, {args.n/(end - start)} samples per second\n')
 
-    #small improve for larger n's test?
 
+    #small improve for larger n's test?
     start = time.time()
     cumprob = 0
     count = 0
@@ -123,17 +118,8 @@ if __name__ == '__main__':
             i += 1
         samples.append(items[i])
 
-    #while i < len(prob):
-    #    if cumprob < sample_probs[count] <= cumprob+prob[i]:
-    #        count +=1
-    #        samples.append(items[i])
-    #    else:
-    #        cumprob+=prob[i]
-    #        i += 1
-        
-
     end = time.time()
-    print(Counter(samples))
+
     print(f' {args.n} samples using test improve in {end-start}s, {args.n/(end - start)} samples per second\n')
 
 
@@ -141,8 +127,5 @@ if __name__ == '__main__':
     startTrie = time.time()
     samples_trie = trie.sample(args.n)
     endTrie = time.time()
-    print(Counter(samples_trie))
-    print(f' {args.n} samples using trie in {endTrie-startTrie}s, {args.n/(endTrie - startTrie)} samples per second\n')
 
-    #end profiling TODO remove
-    #profiler.dump_stats("./tmp/profiler_stats.txt")
+    print(f' {args.n} samples using trie in {endTrie-startTrie}s, {args.n/(endTrie - startTrie)} samples per second\n')
